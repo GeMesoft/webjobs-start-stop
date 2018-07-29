@@ -6,34 +6,81 @@
     "name": "webjobs-start-stop",
     "description": "Start and stop continous web jobs on azure",
     "public": false,
-    "categories": ["Code"],
     "targets": [
         {
             "id": "Microsoft.VisualStudio.Services"
         }
     ],
-    "contributions": [
-        {
-            "id": "my-hub",
-            "type": "ms.vss-web.hub",
-            "targets": [
-                "ms.vss-code-web.code-hub-group"
-            ],
-            "properties": {
-                "name": "My Hub",
-                "uri": "my-hub.html"
-            }
-        }
+    "scope": [
+        "vso.build"
+    ],    
+    "categories": [
+    	"Build and release"
     ],
+    "links": {
+        "getstarted": {
+          "uri": "https://github.com/rbengtsson/appservices-start-stop"
+        }
+    },   
+    "tags": [
+        "azure",
+        "appservices",
+        "webapp",
+        "website",
+        "restart"
+    ],  
+    "content": {
+        "details": {
+          "path": "marketplace-info.md"
+        }
+    },
+    "branding": {
+        "color": "rgb(36, 43, 50)",
+        "theme": "dark"
+    },    
+    "icons": {
+        "default": "images/icon.png"
+    },    
     "files": [
         {
-            "path": "my-hub.html",
-            "addressable": true
+          "path": "Stop/Stop.ps1"
         },
         {
-            "path": "node_modules/vss-web-extension-sdk/lib",
-            "addressable": true,
-            "packagePath": "lib"
+          "path": "Stop/task.json"
+        },
+        {
+          "path": "Stop/icon.png"
+        },        
+        {
+          "path": "Start/Start.ps1"
+        },
+        {
+          "path": "Start/task.json"
+        },
+        {
+          "path": "Start/icon.png"
+        }        
+    ],
+   "contributions": [
+        {
+          "id": "Stop",
+          "type": "ms.vss-distributed-task.task",
+          "targets": [
+            "ms.vss-distributed-task.tasks"
+          ],
+          "properties": {
+            "name": "Stop"
+          }
+        },
+        {
+          "id": "Start",
+          "type": "ms.vss-distributed-task.task",
+          "targets": [
+            "ms.vss-distributed-task.tasks"
+          ],
+          "properties": {
+            "name": "Start"
+          }
         }
-    ]
+    ]   
 }
